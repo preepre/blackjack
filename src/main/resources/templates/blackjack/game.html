@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<title>Welcome to Blackjack</title>
+
+</head>
+
+<body>
+
+<h1>Blackjack</h1>
+<p>Find out your fate here in Tukwila</p>
+
+<h4>Dealer: </h4>
+<br>
+<br>
+<hr>
+<h4>Player:</h4>
+<br>
+
+<form method="post" action="/hit">
+	<button>Hit</button>
+</form>
+<br>
+<form method="post" action="/stand">
+	<button>Stand</button>
+</form> 
+<br>
+
+
+<h6>You currently have {{ wallet }} in your wallet</h6>
+<form method="post" action="/endGame">
+	<button>End Game</button>
+</form> 
+
+</body>
+
+</html>
