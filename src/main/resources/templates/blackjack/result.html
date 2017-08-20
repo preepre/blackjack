@@ -13,12 +13,30 @@
 <h1>Blackjack Game Result</h1>
 
 
+
 <h4>Dealer: </h4>
+{{#dealerHand.cards}}
+	<div>{{ visualRepresentation }} of {{ suite }}</div>
+{{/dealerHand.cards}}
+
+<h6>Values of Dealer card hands:</h6>
+	{{#dealerHand.values}}
+		<div>Value: {{ . }}</div>
+	{{/dealerHand.values}}
 <br>
 <br>
 <hr>
 <h4>Player:</h4>
+<h6> You had bet ${{ betAmount }}.00</h6>
+{{#hand.cards}}
+	<div>{{ visualRepresentation }} of {{ suite }}</div>
+{{/hand.cards}}
 <br>
+
+		<h6>Values of card hands:</h6>
+		{{#hand.values}}
+			<div>Value: {{ . }}</div>
+		{{/hand.values}}
 
 <form method="post" action="/startNewGame">
 	<button>New Game</button>

@@ -4,6 +4,7 @@ public class Wallet {
 	
 	private int dinero;
 	private int betAmount;
+	private int initialAmount;
 	
 	
 	public Wallet() {
@@ -18,13 +19,21 @@ public class Wallet {
 		//change all this
 	}
 	
-	public void setValueToBeUpdated(int value) {
+	public int setTotalMoney(int value) {
+		initialAmount = value;
+		return initialAmount;
+		//change all this
+	}
+	
+	public int betAmount(int value) {
 		betAmount = value;
+		dinero -= betAmount;
+		return dinero;
 		
 	}
 	
 	public void won(int value) {
-		this.setValueToBeUpdated(dinero + betAmount);
+		this.betAmount(dinero + betAmount);
 		this.getTotalMoney();
 		
 	}
@@ -32,12 +41,16 @@ public class Wallet {
 	public void lost(int value) {
 		
 		while (dinero > 0) {
-			this.setValueToBeUpdated(dinero - betAmount);
+			this.betAmount(dinero - betAmount);
 			this.getTotalMoney();
 		}
 		
 		System.out.println("You have no money left");
 						
+	}
+	
+	public void clear() {
+		dinero = 100;
 	}
 	
 	

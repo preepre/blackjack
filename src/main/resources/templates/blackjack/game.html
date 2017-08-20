@@ -14,10 +14,22 @@
 <p>Find out your fate here in Tukwila</p>
 
 <h4>Dealer: </h4>
+{{#dealerHand.cards.1}}
+	<div>{{ visualRepresentation }} of {{ suite }}</div>
+{{/dealerHand.cards.1}}
+
+<h6>Values of Dealer card hands:</h6>
+	{{#dealerHand.values.1}}
+		<div>Value: {{ . }}</div>
+	{{/dealerHand.values.1}}
 <br>
 <br>
 <hr>
 <h4>Player:</h4>
+<p>You have bet ${{ betAmount }}.00 </p>
+{{#hand.cards}}
+	<div>{{ visualRepresentation }} of {{ suite }}</div>
+{{/hand.cards}}
 <br>
 
 <form method="post" action="/hit">
@@ -30,10 +42,20 @@
 <br>
 
 
-<h6>You currently have {{ wallet }} in your wallet</h6>
-<form method="post" action="/endGame">
+<h6>You currently have ${{ wallet }}.00 in your wallet</h6>
+
+<form method="post" name="endGame" action="/endGame">
 	<button>End Game</button>
 </form> 
+
+		<h6>Values of card hands:</h6>
+		{{#hand.values}}
+			<div>Value: {{ . }}</div>
+		{{/hand.values}}
+		<hr>
+
+
+
 
 </body>
 

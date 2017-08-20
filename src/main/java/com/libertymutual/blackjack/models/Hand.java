@@ -25,6 +25,7 @@ public class Hand {
 	public int[] getValues() {
 		int[] sums = new int[] { 0, 0 };
 		
+		
 		for (Card c : cards) {
 			int[] values = c.getValues();
 			sums[0] += values[0];

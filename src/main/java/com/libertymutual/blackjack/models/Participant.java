@@ -6,16 +6,17 @@ public class Participant {
 	private Wallet wallet;
 	
 	
-	public Participant(Wallet wallet) {
+	public Participant(Wallet wallet, Hand hand) {
 		
-		hand = new Hand();
+		this.hand = new Hand();
 		this.wallet = wallet;
 		
 	}
 	
 	public void bet(int value) {
-		wallet.setValueToBeUpdated(value);
+		wallet.betAmount(value);
 		wallet.getTotalMoney();
+
 		
 	}
 	
