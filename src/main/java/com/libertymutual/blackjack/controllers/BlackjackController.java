@@ -74,6 +74,8 @@ public class BlackjackController { // game
 		betAmount = betValue;
 		
 		if (wallet.getTotalMoney() > 0 && betAmount > 0 && wallet.getTotalMoney() > betAmount) {
+
+			model.addAttribute("wallet", wallet.betAmount(betAmount));
 			model.addAttribute("wallet", wallet.getTotalMoney());
 			model.addAttribute("hand", hand);
 			model.addAttribute("dealerHand", dealerHand);

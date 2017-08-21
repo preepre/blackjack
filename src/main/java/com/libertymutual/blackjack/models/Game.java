@@ -45,10 +45,10 @@ public class Game {
 		else if((dealerHand1 > 21 && dealerHand2 > 21) && (playerHand1 <= 21 || playerHand2 <= 21)) {
 			return betAmount * 2;
 		}
-		else if((dealerHand1 < playerHand1 && playerHand1 <= 21)){
+		else if((dealerHand1 < playerHand1 && playerHand1 <= 21)|| (dealerHand1 < playerHand2 && playerHand2 <= 21) || (dealerHand2 < playerHand1 && playerHand1 <= 21) || (dealerHand2 < playerHand2 && playerHand2 <= 21)) {
 			return betAmount * 2;
 		}
-		else if(playerHand1 < dealerHand1 && dealerHand1 <= 21) {
+		else if(( playerHand1 < dealerHand1 && dealerHand1 <= 21 ) || (playerHand2 < dealerHand1 && dealerHand1 <= 21 ) || (playerHand1 < dealerHand2 && dealerHand2 <= 21 ) || ((playerHand2 < dealerHand2 && dealerHand2 <= 21 )) ) {
 			return betAmount * -1; //lose bet
 		}
 		else {
