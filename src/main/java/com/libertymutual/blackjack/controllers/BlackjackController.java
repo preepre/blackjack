@@ -69,7 +69,7 @@ public class BlackjackController { // game
 	}
 	
 	@PostMapping("/bet")
-	public String betValue(Model model, @RequestParam(name = "betVal") int betValue) {
+	public String betValue(Model model, @RequestParam(name = "betAmount") int betValue) {
 		
 		betAmount = betValue;
 		
