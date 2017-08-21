@@ -28,34 +28,63 @@ public class Game {
 		return "Not sure";						
 	}
 	
-	public int finalPayout(int playerHand1, int playerHand2, int dealerHand1, int dealerHand2, int betAmount) {
-		this.playerHand1 = playerHand1;
-		this.dealerHand1 = dealerHand1;
-		this.betAmount = betAmount;
-		
-		if(playerHand1 > 21 || playerHand2 > 21) {
-			return betAmount * -1; //lose bet
-		} 
-		else if (((playerHand1 == 21 || playerHand2 == 21)) && ((dealerHand1 != 21 && dealerHand2 != 21))) {
-			return betAmount; //keep bet
+	public int finalPayout(Hand playerHand, Hand dealerHand, int betAmount) {
+		if (playerHand.isBust()) {
+			return betAmount * -1;
 		}
-		else if((playerHand1 == 21 || playerHand2 == 21) && (dealerHand1 == 21 || dealerHand2 == 21)) {
-			return betAmount; //keep money //tie
-		}
-		else if((dealerHand1 > 21 && dealerHand2 > 21) && (playerHand1 <= 21 || playerHand2 <= 21)) {
+
+		if (dealerHand.isBust()) {
 			return betAmount * 2;
 		}
-		else if((dealerHand1 < playerHand1 && playerHand1 <= 21)|| (dealerHand1 < playerHand2 && playerHand2 <= 21) || (dealerHand2 < playerHand1 && playerHand1 <= 21) || (dealerHand2 < playerHand2 && playerHand2 <= 21)) {
-			return betAmount * 2;
+
+		if (playerHand.isBlackjack() && !dealerHand.isBlackjack()) {
+			return (betAmount * 3) / 2;
 		}
-		else if(( playerHand1 < dealerHand1 && dealerHand1 <= 21 ) || (playerHand2 < dealerHand1 && dealerHand1 <= 21 ) || (playerHand1 < dealerHand2 && dealerHand2 <= 21 ) || ((playerHand2 < dealerHand2 && dealerHand2 <= 21 )) ) {
-			return betAmount * -1; //lose bet
-		}
-		else {
+
+		if (playerHand.isBlackjack() && dealerHand.isBlackjack()) {
 			return betAmount;
 		}
-		
-		
+
+		if (playerHand.getBestValue() > dealerHand.getBestValue()) {
+			return betAmount * 2;
+		}
+
+		if (playerHand.getBestValue() == dealerHand.getBestValue()) {
+			return betAmount;
+			
+		}
+
+		return betAmount * -1;
 	}
+	
+	
+//	public int finalPayout(int playerHand1, int playerHand2, int dealerHand1, int dealerHand2, int betAmount) {
+//		this.playerHand1 = playerHand1;
+//		this.dealerHand1 = dealerHand1;
+//		this.betAmount = betAmount;
+//		
+//		if(playerHand1 > 21 || playerHand2 > 21) {
+//			return betAmount * -1; //lose bet
+//		} 
+//		else if (((playerHand1 == 21 || playerHand2 == 21)) && ((dealerHand1 != 21 && dealerHand2 != 21))) {
+//			return betAmount; //keep bet
+//		}
+//		else if((playerHand1 == 21 || playerHand2 == 21) && (dealerHand1 == 21 || dealerHand2 == 21)) {
+//			return betAmount; //keep money //tie
+//		}
+//		else if((dealerHand1 > 21 && dealerHand2 > 21) && (playerHand1 <= 21 || playerHand2 <= 21)) {
+//			return betAmount * 2;
+//		}
+//		else if((dealerHand1 < playerHand1 && playerHand1 <= 21)|| (dealerHand1 < playerHand2 && playerHand2 <= 21) || (dealerHand2 < playerHand1 && playerHand1 <= 21) || (dealerHand2 < playerHand2 && playerHand2 <= 21)) {
+//			return betAmount * 2;
+//		}
+//		else if(( playerHand1 < dealerHand1 && dealerHand1 <= 21 ) || (playerHand2 < dealerHand1 && dealerHand1 <= 21 ) || (playerHand1 < dealerHand2 && dealerHand2 <= 21 ) || ((playerHand2 < dealerHand2 && dealerHand2 <= 21 )) ) {
+//			return betAmount * -1; //lose bet
+//		}
+//		else {
+//			return betAmount;
+//		}
+//		
+//	}
 
 }

@@ -9,7 +9,7 @@ public class Wallet {
 	
 	public Wallet() {
 
-		dinero = 100;	
+		dinero = 1000;	
 		betAmount = 0;
 		
 	}
@@ -32,20 +32,14 @@ public class Wallet {
 		
 	}
 	
-	public void won(int value) {
-		this.betAmount(dinero + betAmount);
-		this.getTotalMoney();
+	public int won(int value) {
+		return betAmount + value; 
 		
 	}
 	
 	public void lost(int value) {
-		
-		while (dinero > 0) {
-			this.betAmount(dinero - betAmount);
-			this.getTotalMoney();
-		}
-		
-		System.out.println("You have no money left");
+		this.betAmount(dinero - betAmount);
+		this.getTotalMoney();
 						
 	}
 	

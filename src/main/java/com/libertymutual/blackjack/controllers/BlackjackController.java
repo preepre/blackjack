@@ -50,6 +50,7 @@ public class BlackjackController { // game
 	private int checkPlayerSums[];
 	private int checkDealerSums[];
 	
+	int finalPayout = 0;
 	
 	//private int valueBet = 0;
 	
@@ -73,10 +74,10 @@ public class BlackjackController { // game
 		
 		betAmount = betValue;
 		
+		
 		if (wallet.getTotalMoney() > 0 && betAmount > 0 && wallet.getTotalMoney() > betAmount) {
 
 			model.addAttribute("wallet", wallet.betAmount(betAmount));
-			model.addAttribute("wallet", wallet.getTotalMoney());
 			model.addAttribute("hand", hand);
 			model.addAttribute("dealerHand", dealerHand);
 			model.addAttribute("betAmount", betAmount);
@@ -111,10 +112,22 @@ public class BlackjackController { // game
 		
 		if(newCard != null) {
 			hand.addCard(newCard);	
+
+		}
+		
+		if (hand.isBust()) {
+			finalPayout = game.finalPayout(hand, dealerHand, betAmount);
+
+		
+			model.addAttribute("finalPayout", wallet.won(finalPayout));
+			model.addAttribute("wallet", wallet.betAmount(finalPayout));
+			return "blackjack/result";
 		}
 		
 		
 		return "blackjack/game";
+		
+
 		
 	}
 	
@@ -141,8 +154,13 @@ public class BlackjackController { // game
 		}
 		
 //		totalPayout = game.finalPayout(checkPlayerSums[0], checkPlayerSums[1], checkDealerSums[0], checkDealerSums[1], betAmount);
-//		model.addAttribute("totalPayout", wallet.getTotalMoney() + totalPayout );
+//		model.addAttribute("totalPayout", wallet.getTotalMoney() + totalPayout );	
+		finalPayout = game.finalPayout(hand, dealerHand, betAmount);
+
+		model.addAttribute("finalPayout", wallet.won(finalPayout));
+		model.addAttribute("wallet", wallet.betAmount(finalPayout));
 		
+				
 		return "blackjack/result"; 
 		 
 	}
@@ -154,6 +172,10 @@ public class BlackjackController { // game
 		model.addAttribute("hand", hand);
 		model.addAttribute("dealerHand", dealerHand);
 		model.addAttribute("betAmount", betAmount);
+		finalPayout = game.finalPayout(hand, dealerHand, betAmount);
+
+		model.addAttribute("finalPayout", wallet.won(finalPayout));
+		model.addAttribute("wallet", wallet.betAmount(finalPayout));
 		//totalPayout = game.finalPayout(checkPlayerSums[0], checkPlayerSums[1], checkDealerSums[0], checkDealerSums[1], betAmount);
 		//model.addAttribute("totalPayout", wallet.getTotalMoney() + totalPayout );
 		
@@ -171,7 +193,7 @@ public class BlackjackController { // game
 		player = new Participant(wallet, hand);	
 		dealer = new Participant(bank, dealerHand);
 		betAmount = 0;
-		totalPayout = 0;
+		finalPayout = 0;
 					
 
 		return "blackjack/result";
@@ -195,7 +217,8 @@ public class BlackjackController { // game
 		dealer = new Participant(bank, dealerHand);
 		
 		betAmount = 0;
-		totalPayout = 0;
+		finalPayout = 0;
+		
 		
 				
 		return "redirect:/";
