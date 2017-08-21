@@ -19,11 +19,6 @@ public class Wallet {
 		//change all this
 	}
 	
-	public int setTotalMoney(int value) {
-		initialAmount = value;
-		return initialAmount;
-		//change all this
-	}
 	
 	public int betAmount(int value) {
 		betAmount = value;
@@ -32,19 +27,15 @@ public class Wallet {
 		
 	}
 	
-	public int won(int value) {
-		return betAmount + value; 
+	//add amount won to current amount in wallet
+	public void won(int value) {
+		dinero += value;
 		
 	}
-	
-	public void lost(int value) {
-		this.betAmount(dinero - betAmount);
-		this.getTotalMoney();
-						
-	}
+
 	
 	public void clear() {
-		dinero = 100;
+		dinero = 1000;
 	}
 	
 	

@@ -18,10 +18,6 @@
 	<div>{{ visualRepresentation }} of {{ suite }}</div>
 {{/dealerHand.cards.1}}
 
-<h6>Values of Dealer card hands:</h6>
-	{{#dealerHand.values.1}}
-		<div>Value: {{ . }}</div>
-	{{/dealerHand.values.1}}
 <br>
 <br>
 <hr>
@@ -45,7 +41,7 @@
 <h6>You currently have ${{ wallet }}.00 in your wallet</h6>
 
 <form method="post" name="endGame" action="/endGame">
-	<button>End Game</button>
+	<button>Leave Match</button>
 </form> 
 
 		<h6>Values of card hands:</h6>

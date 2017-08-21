@@ -54,6 +54,8 @@ public class Hand {
 			return handValues[0];
 		} else if (handValues[1] > handValues[0] && handValues[1] <= 21) {
 			return handValues[1];
+		} else if(handValues[0] == handValues[1]) {
+			return handValues[0];
 		}
 //		for (int i : sums) {
 //		if (i <= 21)
@@ -65,7 +67,10 @@ public class Hand {
 	public boolean isBlackjack() {
 		int[] handValues = this.getValues();
 		
-		if(handValues[0] == 21 || handValues[1] == 21) {
+		if(cards.size() == 2 && handValues[0] == 21) {
+			return true;
+		}
+		else if (cards.size() == 2 && handValues[1] == 21) {
 			return true;
 		}
 		
